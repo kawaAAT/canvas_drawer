@@ -8,12 +8,16 @@ export default class History {
 	add(data) {
 		this._storage.add(data);
 
-		// if (this._maxSize < this._storage.getCount())
-		// 	this._reserved = this._storage.shift();
+		if (this._maxSize < this._storage.getCount())
+			this._reserved = this._storage.shift();
 	}
 
 	getLast() {
-		this._storage.pop();
+		this._storage.showFullMemory();
+
+		if (this._storage.getCount() > 1)
+			this._storage.pop();
+
 		return this._storage.getLast();
 	}
 }
